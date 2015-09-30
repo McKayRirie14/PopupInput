@@ -18,22 +18,43 @@ public class PopupController
 		String myName = myPopups.grabAnswer("Type in your name");
 		myPopups.showResponse("You typed in: " + myName);
 		
-		String temp = myPopups.grabAnswer("Type in your age");
+		String userNumber = myPopups.grabAnswer("Type in your age");
 		int myAge;
 		
-		if(isInteger(temp))
+		while(!isInteger(userNumber))
 		{
-			myAge = Integer.parseInt(temp);
+			userNumber = myPopups.grabAnswer("Type in a positive integer for your age!!!");
+		}
+			
+		if(isInteger(userNumber))
+		{
+			myAge = Integer.parseInt(userNumber);
 		}
 		else
 		{
 			myAge = -9999999;
 		}
 		
-		myPopups.showResponse("You typed " myAge);
+		myPopups.showResponse("You typed " + myAge);
+		
+		String weightTemp = myPopups.grabAnswer("type in your weight");
+		double myWeight; 
+		
+		while(!isDouble(weightTemp))
+		{
+			weightTemp = myPopups.grabAnswer("Type in your weight");
+		}
+		if(isDouble(weightTemp))
+		{
+			myWeight = Double.parseDouble(weightTemp);
+		}
+		else
+		{
+			myWeight = -0.546;
+		}
 		
 		String tempWeight = myPopups.grabAnswer("Type in your weight");
-		double myWeight = Double.parseDouble(tempWeight);
+		
 		myPopups.showResponse("You typed " + myWeight);
 		
 		myTestThing = new Thingy(myName, myAge, myWeight); 
@@ -45,27 +66,32 @@ public class PopupController
 		
 		try
 		{
-			int temp - Integer.parseInt(input);
+			int userNumber = Integer.parseInt(input);
 			isInt = true;
 		}
-		catch(NumberFormatExeption error)
+		catch(NumberFormatException error)
 		{
-			myPopups.showesponse("notan int - bad value will be used")
+			myPopups.showResponse("not an int - bad value will be used");
 		}
 		
 		return isInt;
 	}
 	
-	private boolean isDouble isDouble(String input)
+	private boolean isDouble (String input)
 	{
 		boolean isDouble = false;
 		
 		try
 		{
-			double temp = Double.parseDouble(input);
+			double myWeight = Double.parseDouble(input);
 			isDouble = true;
 			
+		}
+		catch(NumberFormatException error) 
+		{
+			myPopups.showResponse("not a double - try again");
 		}
 		
 		return isDouble;
 	}
+}
